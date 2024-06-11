@@ -1,39 +1,29 @@
 def main():
     plate = input("Plate: ")
     if is_valid(plate):
-        print(plate)
+        print("Valid")
     else:
-        print("InValid")
-
-    
+        print("Invalid")
 
 def is_valid(s):
     if 2 <= len(s) <= 6 and s.isalnum():
-        if s.isalpha() :
+
+        if s.isalpha(): 
             return True
         else:
-            flag = False
-            for i in s:
-                if i.isdigit():
-                    if flag==False:
-                        if i == "0":
+            
+            if s[:2].isalpha() and s[-2:].isdigit():
+                for i in range(len(s)):
+                    if s[i].isdigit():
+                        # Return false if number starts with 0 or the following character is letter
+                        if s[i].startswith("0") or s[i:].isalpha():
                             return False
                         else:
-                            flag = True
-                    if flag == True:
-                        pass
-                if i.isalpha():
-                    if flag == True:
-                        return False
-                    if flag == False:
-                        pass
-            return True
-        
-            
+                            return True
+            else:
+                return False
     else:
         return False
-if __name__ == "__main__":
-    main()
 
-                    
-        
+
+main()
